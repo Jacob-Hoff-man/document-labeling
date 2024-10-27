@@ -1,0 +1,19 @@
+version: "3"
+services:
+  be-spring:
+    build:
+      context: ./labeling/
+    ports:
+      - "8080:8080"
+    container_name: be-spring
+    depends_on:
+      - db-mongo
+
+  db-mongo:
+    image: 'mongo:latest'
+    ports:
+      - 27017:27017
+    container_name: db-mongo
+    volumes:
+      - ./db_data/:/data/db
+
