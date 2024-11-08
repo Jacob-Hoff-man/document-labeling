@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.document.labeling.models.Course;
+import com.document.labeling.models.request.CoursePostRequest;
 import com.document.labeling.services.CourseService;
 
 @RestController
@@ -20,7 +21,7 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping("/courses")
-    public List<Course> getCourse() {
+    public List<Course> getCourses() {
         return courseService.getAllCourses();
     }
 
@@ -30,7 +31,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses")
-    public Course postCourse(final @RequestBody Course course) {
+    public Course postCourse(final @RequestBody CoursePostRequest course) {
         return courseService.postCourse(course);
     }
 
