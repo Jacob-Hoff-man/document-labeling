@@ -16,4 +16,5 @@ services:
     container_name: db-mongo
     volumes:
       - ./db_data/:/data/db
+      - ./db_scripts:/docker-entrypoint-initdb.d
 
