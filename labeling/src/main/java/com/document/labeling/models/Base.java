@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-public abstract class BaseModel {
+public abstract class Base {
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
+
+    public Base() {
+        this.createdDate = LocalDateTime.now();
+    }
 
     public LocalDateTime getCreatedDate() {
         return createdDate;
