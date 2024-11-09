@@ -1,12 +1,10 @@
 package com.document.labeling.models;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "courses")
-public class Course extends BaseModel {
+public class Course extends Base {
 
     @Id
     private String id;
@@ -14,10 +12,10 @@ public class Course extends BaseModel {
     private String description;
 
     public Course(String id, String name, String description) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;
-        this.setCreatedDate(LocalDateTime.now());
     }
 
     public String getId() {
