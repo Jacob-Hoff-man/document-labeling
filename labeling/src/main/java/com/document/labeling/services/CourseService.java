@@ -7,6 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.document.labeling.constants.CourseConstants;
 import com.document.labeling.daos.CoursePostRequest;
 import com.document.labeling.daos.CoursePutRequest;
 import com.document.labeling.exceptions.course.CourseNotFoundException;
@@ -38,7 +39,7 @@ public class CourseService {
         if (course.isPresent()) {
             return course.get();
         } else {
-            throw new CourseNotFoundException("No course in the repository with id - " + id);
+            throw new CourseNotFoundException(CourseConstants.courseNotFound(id));
         }
     }
 
@@ -48,11 +49,10 @@ public class CourseService {
         if (course.isPresent()) {
             Course updatedCourse = CourseUtils.getUpdatedCourse(course.get(), coursePutRequest);
             if (updatedCourse == null)
-                throw new CourseNotUpdatedException(
-                        "No values were presented to update course in the repository with id - " + id);
+                throw new CourseNotUpdatedException(CourseConstants.courseNotUpdated(id));
             return courseRepository.save(updatedCourse);
         } else {
-            throw new CourseNotFoundException("No course in the repository with id - " + id);
+            throw new CourseNotFoundException(CourseConstants.courseNotFound(id));
         }
     }
 
@@ -64,6 +64,6 @@ public class CourseService {
         if (courseRepository.existsById(id))
             courseRepository.deleteById(id);
         else
-            throw new CourseNotFoundException("No course in the repository with id - " + id);
+            throw new CourseNotFoundException(CourseConstants.courseNotFound(id));
     }
 }
