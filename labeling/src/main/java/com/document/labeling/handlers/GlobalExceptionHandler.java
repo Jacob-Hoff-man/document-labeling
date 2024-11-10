@@ -36,7 +36,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(CourseNotFoundException.class)
     public ErrorDetail handleCourseNotFoundException(CourseNotFoundException exception, WebRequest request) {
-        System.out.println("@@course not found exception");
         return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
     }
 
