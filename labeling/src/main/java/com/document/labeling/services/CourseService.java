@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.document.labeling.daos.CoursePostRequest;
-import com.document.labeling.exceptions.course.CourseInvalidException;
 import com.document.labeling.exceptions.course.CourseNotFoundException;
 import com.document.labeling.models.Course;
 import com.document.labeling.repositories.CourseRepository;
@@ -18,12 +17,7 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public Course postCourse(CoursePostRequest coursePostRequest) throws CourseInvalidException {
-        // validations
-        if (coursePostRequest == null)
-            throw new CourseInvalidException("POST Course request body must not be null");
-
-        // build course
+    public Course postCourse(CoursePostRequest coursePostRequest) {
         Course course = new Course(
                 ObjectId.get().toHexString(),
                 coursePostRequest.getName(),
@@ -47,5 +41,12 @@ public class CourseService {
 
     public void deleteAllCourses() {
         courseRepository.deleteAll();
+    }
+
+    public void deleteCourseById(String id) throws CourseNotFoundException {
+        if (courseRepository.existsById(id))
+            courseRepository.deleteById(id);
+        else
+            throw new CourseNotFoundException("No course in the repository with id - " + id);
     }
 }
