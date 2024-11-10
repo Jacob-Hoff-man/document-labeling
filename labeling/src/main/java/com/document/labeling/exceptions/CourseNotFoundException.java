@@ -1,4 +1,4 @@
-package com.document.labeling.exceptions.course;
+package com.document.labeling.exceptions;
 
 public class CourseNotFoundException extends RuntimeException {
     public CourseNotFoundException(String message) {
