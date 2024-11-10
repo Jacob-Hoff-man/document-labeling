@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.document.labeling.daos.CoursePostRequest;
+import com.document.labeling.daos.CoursePutRequest;
 import com.document.labeling.exceptions.course.CourseNotFoundException;
+import com.document.labeling.exceptions.course.CourseNotUpdatedException;
 import com.document.labeling.models.Course;
 import com.document.labeling.repositories.CourseRepository;
+import com.document.labeling.utils.CourseUtils;
 
 @Service
 public class CourseService {
@@ -23,7 +26,7 @@ public class CourseService {
                 coursePostRequest.getName(),
                 coursePostRequest.getDescription());
 
-        return courseRepository.save(course);
+        return courseRepository.insert(course);
     }
 
     public List<Course> getAllCourses() {
@@ -34,6 +37,20 @@ public class CourseService {
         Optional<Course> course = courseRepository.findById(id);
         if (course.isPresent()) {
             return course.get();
+        } else {
+            throw new CourseNotFoundException("No course in the repository with id - " + id);
+        }
+    }
+
+    public Course putCourseById(String id, CoursePutRequest coursePutRequest)
+            throws CourseNotFoundException, CourseNotUpdatedException {
+        Optional<Course> course = courseRepository.findById(id);
+        if (course.isPresent()) {
+            Course updatedCourse = CourseUtils.getUpdatedCourse(course.get(), coursePutRequest);
+            if (updatedCourse == null)
+                throw new CourseNotUpdatedException(
+                        "No values were presented to update course in the repository with id - " + id);
+            return courseRepository.save(updatedCourse);
         } else {
             throw new CourseNotFoundException("No course in the repository with id - " + id);
         }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
-import com.document.labeling.exceptions.course.CourseAlreadyExistsException;
 import com.document.labeling.exceptions.course.CourseNotFoundException;
+import com.document.labeling.exceptions.course.CourseNotUpdatedException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -46,9 +46,9 @@ public class GlobalExceptionHandler {
         return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
     }
 
-    @ResponseStatus(HttpStatus.ALREADY_REPORTED)
-    @ExceptionHandler(CourseAlreadyExistsException.class)
-    public ErrorDetail handleCourseAlreadyExistsException(CourseAlreadyExistsException exception, WebRequest request) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ExceptionHandler(CourseNotUpdatedException.class)
+    public ErrorDetail handleCourseNotUpdatedException(CourseNotUpdatedException exception, WebRequest request) {
         return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
     }
 
