@@ -11,9 +11,9 @@ import com.document.labeling.models.document.DocumentSentenceRecordId;
 /**
  * Repository used in storing document sentence record objects in database
  */
-public interface DocumentSentenceRecordRepository
+public interface CourseDocumentSentenceRecordRepository
                 extends MongoRepository<DocumentSentenceRecord, DocumentSentenceRecordId> {
 
-        @Query("{ '_id.documentId' : ?0 }")
-        List<DocumentSentenceRecord> findByDocumentId(String documentId);
+        @Query("{ 'id.courseId' : ?0, '_id.documentId' : ?1 }")
+        List<DocumentSentenceRecord> findByCourseIdAndDocumentId(String courseId, String documentId);
 }
