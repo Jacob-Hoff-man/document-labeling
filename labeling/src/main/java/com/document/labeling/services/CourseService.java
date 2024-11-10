@@ -42,4 +42,11 @@ public class CourseService {
     public void deleteAllCourses() {
         courseRepository.deleteAll();
     }
+
+    public void deleteCourseById(String id) throws CourseNotFoundException {
+        if (courseRepository.existsById(id))
+            courseRepository.deleteById(id);
+        else
+            throw new CourseNotFoundException("No course in the repository with id - " + id);
+    }
 }
