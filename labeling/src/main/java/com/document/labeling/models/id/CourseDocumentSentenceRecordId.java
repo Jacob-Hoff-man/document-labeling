@@ -1,11 +1,12 @@
 package com.document.labeling.models.id;
 
+
 public class CourseDocumentSentenceRecordId {
     private String courseId;
     private String documentId;
-    private String sentenceId;
+    private int sentenceId;
 
-    public CourseDocumentSentenceRecordId(String courseId, String documentId, String sentenceId) {
+    public CourseDocumentSentenceRecordId(String courseId, String documentId, int sentenceId) {
         this.courseId = courseId;
         this.documentId = documentId;
         this.sentenceId = sentenceId;
@@ -27,11 +28,12 @@ public class CourseDocumentSentenceRecordId {
         this.documentId = documentId;
     }
 
-    public String getSentenceId() {
+    public int getSentenceId() {
         return sentenceId;
     }
 
-    public void setSentenceId(String sentenceId) {
+    public void setSentenceId(int sentenceId) {
         this.sentenceId = sentenceId;
     }
+
 }
