@@ -45,16 +45,16 @@ public class CourseDocumentSentenceRecordController {
         return courseDocumentSentenceRecordService.getAllCourseDocumentSentenceRecords(courseId, documentId);
     }
 
-    // TODO: replace this with a POST CourseDocument endpoint, and internally use
-    // service fcn
-    @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<CourseDocumentSentenceRecord> postCourseDocumentSentenceRecordList(
-            @PathVariable String courseId,
-            @PathVariable String documentId,
-            final @RequestBody @Valid CourseDocumentSentenceRecordListPostRequest request) {
-        return courseDocumentSentenceRecordService.postCourseDocumentSentenceRecordList(courseId, documentId, request);
-    }
+    // // TODO: replace this with a POST CourseDocument endpoint, and internally use
+    // // service fcn
+    // @PostMapping
+    // @ResponseStatus(HttpStatus.OK)
+    // public List<CourseDocumentSentenceRecord> postCourseDocumentSentenceRecordList(
+    //         @PathVariable String courseId,
+    //         @PathVariable String documentId,
+    //         final @RequestBody @Valid CourseDocumentSentenceRecordListPostRequest request) {
+    //     return courseDocumentSentenceRecordService.postCourseDocumentSentenceRecordList(courseId, documentId, request);
+    // }
 
     @PutMapping("/sentences/{sentenceId}")
     @ResponseStatus(HttpStatus.OK)
