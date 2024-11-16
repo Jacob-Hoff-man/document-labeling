@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.document.labeling.daos.CourseDocumentSentenceRecordListPostRequest;
-import com.document.labeling.daos.CourseDocumentSentenceRecordPutRequest;
+import com.document.labeling.dtos.CourseDocumentSentenceRecordListPostRequest;
+import com.document.labeling.dtos.CourseDocumentSentenceRecordPutRequest;
 import com.document.labeling.models.CourseDocumentSentenceRecord;
 import com.document.labeling.services.CourseDocumentSentenceRecordService;
 

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.document.labeling.constants.CourseConstants;
-import com.document.labeling.daos.CoursePostRequest;
-import com.document.labeling.daos.CoursePutRequest;
+import com.document.labeling.dtos.CoursePostRequest;
+import com.document.labeling.dtos.CoursePutRequest;
 import com.document.labeling.exceptions.CourseNotFoundException;
 import com.document.labeling.exceptions.CourseNotUpdatedException;
 import com.document.labeling.models.Course;

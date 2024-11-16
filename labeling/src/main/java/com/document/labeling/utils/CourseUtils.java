@@ -1,6 +1,6 @@
 package com.document.labeling.utils;
 
-import com.document.labeling.daos.CoursePutRequest;
+import com.document.labeling.dtos.CoursePutRequest;
 import com.document.labeling.models.Course;
 
 public class CourseUtils {

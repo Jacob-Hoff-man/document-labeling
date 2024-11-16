@@ -1,6 +1,6 @@
 package com.document.labeling.utils;
 
-import com.document.labeling.daos.CourseDocumentSentenceRecordPutRequest;
+import com.document.labeling.dtos.CourseDocumentSentenceRecordPutRequest;
 import com.document.labeling.models.CourseDocumentSentenceRecord;
 
 public class CourseDocumentSentenceRecordUtils {
