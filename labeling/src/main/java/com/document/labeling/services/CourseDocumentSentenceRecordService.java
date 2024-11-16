@@ -27,6 +27,18 @@ public class CourseDocumentSentenceRecordService {
     @Autowired
     private CourseService courseService;
 
+    public CourseDocumentSentenceRecord getCourseDocumentSentenceRecordById(String courseId, String documentIt,
+            int sentenceId) {
+        Optional<CourseDocumentSentenceRecord> cdsr = courseDocumentSentenceRecordRepository
+                .findById(new CourseDocumentSentenceRecordId(courseId, documentIt, sentenceId));
+        if (cdsr.isPresent()) {
+            return cdsr.get();
+        } else {
+            throw new CourseDocumentSentenceRecordNotFoundException(CourseDocumentSentenceRecordConstants
+                    .courseDocumentSentenceRecordNotFound(courseId, documentIt, sentenceId));
+        }
+    }
+
     public List<CourseDocumentSentenceRecord> getAllCourseDocumentSentenceRecords(String courseId, String documentId) {
         return courseDocumentSentenceRecordRepository.findByCourseIdAndDocumentId(courseId, documentId);
     }
