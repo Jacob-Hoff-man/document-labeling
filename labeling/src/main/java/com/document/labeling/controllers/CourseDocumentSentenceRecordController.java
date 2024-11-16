@@ -32,7 +32,6 @@ public class CourseDocumentSentenceRecordController {
     public List<CourseDocumentSentenceRecord> getCourseDocumentSentenceRecordList(
             @PathVariable String courseId,
             @PathVariable String documentId) {
-        System.out.println("@@ " + courseId + " " + documentId);
         return courseDocumentSentenceRecordService.getAllCourseDocumentSentenceRecords(courseId, documentId);
     }
 
