@@ -24,6 +24,10 @@ public class CourseDocumentSentenceRecordService {
     @Autowired
     private CourseService courseService;
 
+    public List<CourseDocumentSentenceRecord> getAllCourseDocumentSentenceRecords(String courseId, String documentId) {
+        return courseDocumentSentenceRecordRepository.findByCourseIdAndDocumentId(courseId, documentId);
+    }
+
     public CourseDocumentSentenceRecord putCourseDocumentSentenceRecordById(
             String courseId,
             String documentId,

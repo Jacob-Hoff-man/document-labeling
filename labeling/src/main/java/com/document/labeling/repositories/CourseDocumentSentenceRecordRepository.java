@@ -14,6 +14,6 @@ import com.document.labeling.models.id.CourseDocumentSentenceRecordId;
 public interface CourseDocumentSentenceRecordRepository
                 extends MongoRepository<CourseDocumentSentenceRecord, CourseDocumentSentenceRecordId> {
 
-        @Query("{ 'id.courseId' : ?0, '_id.documentId' : ?1 }")
+        @Query("{ '_id.courseId' : ?0, '_id.documentId' : ?1 }")
         List<CourseDocumentSentenceRecord> findByCourseIdAndDocumentId(String courseId, String documentId);
 }

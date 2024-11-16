@@ -3,9 +3,11 @@ package com.document.labeling.models;
 import java.util.Arrays;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.document.labeling.models.id.CourseDocumentSentenceRecordId;
 
+@Document(collection = "course_document_sentences")
 public class CourseDocumentSentenceRecord extends Base {
     @Id
     CourseDocumentSentenceRecordId documentSentenceRecordId;
