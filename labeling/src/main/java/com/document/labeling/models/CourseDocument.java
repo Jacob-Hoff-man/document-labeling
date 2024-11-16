@@ -1,27 +1,24 @@
 package com.document.labeling.models;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Id;
 
-@Document(collection = "courses")
-public class Course extends Base {
-
+public class CourseDocument extends Base {
     @Id
-    private String id;
+    private CourseDocument id;
     private String name;
     private String description;
 
-    public Course(String id, String name, String description) {
+    public CourseDocument(CourseDocument id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public String getId() {
+    public CourseDocument getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(CourseDocument id) {
         this.id = id;
     }
 
@@ -43,7 +40,7 @@ public class Course extends Base {
 
     @Override
     public String toString() {
-        return "Course [id=" + id + ", name=" + name + ", description=" + description + "]";
+        return "CourseDocument [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
 
     @Override
@@ -64,7 +61,7 @@ public class Course extends Base {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Course other = (Course) obj;
+        CourseDocument other = (CourseDocument) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
