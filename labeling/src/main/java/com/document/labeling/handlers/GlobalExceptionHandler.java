@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
-import com.document.labeling.exceptions.course.CourseNotFoundException;
-import com.document.labeling.exceptions.course.CourseNotUpdatedException;
+import com.document.labeling.exceptions.CourseDocumentNotFoundException;
+import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotFoundException;
+import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotUpdatedException;
+import com.document.labeling.exceptions.CourseDocumentSentenceRecordWordsAndLabelsLengthNotEqualException;
+import com.document.labeling.exceptions.CourseNotFoundException;
+import com.document.labeling.exceptions.CourseNotUpdatedException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -49,6 +53,37 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ExceptionHandler(CourseNotUpdatedException.class)
     public ErrorDetail handleCourseNotUpdatedException(CourseNotUpdatedException exception, WebRequest request) {
+        return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
+    }
+
+    // CourseDocument exceptions
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(CourseDocumentNotFoundException.class)
+    public ErrorDetail handleCourseDocumentNotFoundException(CourseDocumentNotFoundException exception,
+            WebRequest request) {
+        return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
+    }
+
+    // CourseDocumentSentenceRecord exceptions
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(CourseDocumentSentenceRecordNotFoundException.class)
+    public ErrorDetail handleCourseDocumentSentenceRecordNotFoundException(
+            CourseDocumentSentenceRecordNotFoundException exception,
+            WebRequest request) {
+        return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ExceptionHandler(CourseDocumentSentenceRecordNotUpdatedException.class)
+    public ErrorDetail handleCourseDocumentSentenceRecordNotUpdatedException(
+            CourseDocumentSentenceRecordNotUpdatedException exception, WebRequest request) {
+        return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CourseDocumentSentenceRecordWordsAndLabelsLengthNotEqualException.class)
+    public ErrorDetail handleCourseDocumentSentenceRecordWordsAndLabelsLengthNotEqualException(
+            CourseDocumentSentenceRecordWordsAndLabelsLengthNotEqualException exception, WebRequest request) {
         return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
     }
 

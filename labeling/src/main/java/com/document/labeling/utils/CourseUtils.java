@@ -8,7 +8,7 @@ public class CourseUtils {
     }
 
     public static Course getUpdatedCourse(Course course, CoursePutRequest newCourse) {
-        Course updatedCourse = course;
+        Course updatedCourse = new Course(course.getId(), course.getName(), course.getDescription());
         if (newCourse.getName() != null)
             updatedCourse.setName(newCourse.getName());
         if (newCourse.getDescription() != null)
