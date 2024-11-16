@@ -1,4 +1,4 @@
-package com.document.labeling.daos;
+package com.document.labeling.dtos;
 
 public class CoursePutRequest {
     private String name;
