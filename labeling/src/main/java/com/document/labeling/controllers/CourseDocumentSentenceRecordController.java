@@ -21,13 +21,23 @@ import com.document.labeling.services.CourseDocumentSentenceRecordService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/courses/{courseId}/documents")
+@RequestMapping("/courses/{courseId}/documents/{documentId}")
 public class CourseDocumentSentenceRecordController {
 
     @Autowired
     private CourseDocumentSentenceRecordService courseDocumentSentenceRecordService;
 
-    @GetMapping("/{documentId}")
+    @GetMapping("/sentences/{sentenceId}")
+    @ResponseStatus(HttpStatus.OK)
+    public CourseDocumentSentenceRecord getCourseDocumentSentenceRecordById(
+            @PathVariable String courseId,
+            @PathVariable String documentId,
+            @PathVariable int sentenceId) {
+        return courseDocumentSentenceRecordService.getCourseDocumentSentenceRecordById(courseId, documentId,
+                sentenceId);
+    }
+
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CourseDocumentSentenceRecord> getCourseDocumentSentenceRecordList(
             @PathVariable String courseId,
@@ -37,7 +47,7 @@ public class CourseDocumentSentenceRecordController {
 
     // TODO: replace this with a POST CourseDocument endpoint, and internally use
     // service fcn
-    @PostMapping("/{documentId}")
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CourseDocumentSentenceRecord> postCourseDocumentSentenceRecordList(
             @PathVariable String courseId,
@@ -46,7 +56,7 @@ public class CourseDocumentSentenceRecordController {
         return courseDocumentSentenceRecordService.postCourseDocumentSentenceRecordList(courseId, documentId, request);
     }
 
-    @PutMapping("/{documentId}/{sentenceId}")
+    @PutMapping("/sentences/{sentenceId}")
     @ResponseStatus(HttpStatus.OK)
     public CourseDocumentSentenceRecord putCourseDocumentSentenceRecordById(
             @PathVariable String courseId,
