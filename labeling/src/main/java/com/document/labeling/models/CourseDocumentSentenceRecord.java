@@ -51,4 +51,35 @@ public class CourseDocumentSentenceRecord extends Base {
         return "CourseDocumentSentenceRecord [documentSentenceRecordId=" + documentSentenceRecordId + ", words="
                 + Arrays.toString(words) + ", labels=" + Arrays.toString(labels) + "]";
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((documentSentenceRecordId == null) ? 0 : documentSentenceRecordId.hashCode());
+        result = prime * result + Arrays.hashCode(words);
+        result = prime * result + Arrays.hashCode(labels);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CourseDocumentSentenceRecord other = (CourseDocumentSentenceRecord) obj;
+        if (documentSentenceRecordId == null) {
+            if (other.documentSentenceRecordId != null)
+                return false;
+        } else if (!documentSentenceRecordId.equals(other.documentSentenceRecordId))
+            return false;
+        if (!Arrays.equals(words, other.words))
+            return false;
+        if (!Arrays.equals(labels, other.labels))
+            return false;
+        return true;
+    }
 }
