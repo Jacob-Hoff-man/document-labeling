@@ -3,12 +3,16 @@ package com.document.labeling.services;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.document.labeling.constants.CourseDocumentSentenceRecordConstants;
 import com.document.labeling.constants.LabelConstants;
 import com.document.labeling.daos.CourseDocumentSentenceRecordListPostRequest;
+import com.document.labeling.daos.CourseDocumentSentenceRecordPutRequest;
+import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotFoundException;
 import com.document.labeling.models.CourseDocumentSentenceRecord;
 import com.document.labeling.models.id.CourseDocumentSentenceRecordId;
 import com.document.labeling.repositories.CourseDocumentSentenceRecordRepository;
@@ -19,6 +23,26 @@ public class CourseDocumentSentenceRecordService {
     private CourseDocumentSentenceRecordRepository courseDocumentSentenceRecordRepository;
     @Autowired
     private CourseService courseService;
+
+    public CourseDocumentSentenceRecord putCourseDocumentSentenceRecordById(
+            String courseId,
+            String documentId,
+            int sentenceId,
+            CourseDocumentSentenceRecordPutRequest request) {
+        CourseDocumentSentenceRecordId id = new CourseDocumentSentenceRecordId(courseId, documentId, sentenceId);
+        Optional<CourseDocumentSentenceRecord> cdsr = courseDocumentSentenceRecordRepository.findById(id);
+        if (cdsr.isPresent()) {
+            // TODO: update to have validations on words and labels length
+            // for now, only update labels and not words
+            CourseDocumentSentenceRecord updatedCdsr = cdsr.get();
+            updatedCdsr.setLabels(request.getLabels());
+            return courseDocumentSentenceRecordRepository.save(updatedCdsr);
+
+        } else {
+            throw new CourseDocumentSentenceRecordNotFoundException(CourseDocumentSentenceRecordConstants
+                    .courseDocumentSentenceRecordNotFound(courseId, documentId, sentenceId));
+        }
+    }
 
     public List<CourseDocumentSentenceRecord> postCourseDocumentSentenceRecordList(
             String courseId,
