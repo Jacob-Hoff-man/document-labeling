@@ -1,4 +1,5 @@
 // seed.js
+db = db.getSiblingDB('db');
 
 // courses
 db.courses.insertMany([
