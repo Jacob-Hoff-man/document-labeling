@@ -24,8 +24,6 @@ import com.document.labeling.utils.CourseDocumentSentenceRecordUtils;
 public class CourseDocumentSentenceRecordService {
     @Autowired
     private CourseDocumentSentenceRecordRepository courseDocumentSentenceRecordRepository;
-    @Autowired
-    private CourseService courseService;
 
     public CourseDocumentSentenceRecord getCourseDocumentSentenceRecordById(String courseId, String documentId,
             int sentenceId) {
@@ -72,9 +70,6 @@ public class CourseDocumentSentenceRecordService {
             String courseId,
             String documentId,
             CourseDocumentSentenceRecordListPostRequest request) {
-        // Throws CourseNotFound exception if dne
-        courseService.getCourseById(courseId);
-        // TODO: add CourseDocument findById validation
 
         List<CourseDocumentSentenceRecord> records = new ArrayList<>();
         int index = 0;
@@ -89,5 +84,10 @@ public class CourseDocumentSentenceRecordService {
             records.add(courseDocumentSentenceRecordRepository.insert(cdsr));
         }
         return records;
+    }
+
+    public void deleteAllCourseDocumentSentenceRecords(String courseId, String documentId) {
+        List<CourseDocumentSentenceRecord> records = this.getAllCourseDocumentSentenceRecords(courseId, documentId);
+        this.courseDocumentSentenceRecordRepository.deleteAll(records);
     }
 }

@@ -106,4 +106,14 @@ public class CourseDocumentService {
                     .courseDocumentNotFound(courseId, documentId));
         }
     }
+
+    public void deleteCourseDocumentById(String courseId, String documentId) throws CourseDocumentNotFoundException {
+        CourseDocumentId id = new CourseDocumentId(courseId, documentId);
+        if (courseDocumentRepository.existsById(id)) {
+            courseDocumentRepository.deleteById(id);
+            courseDocumentSentenceRecordService.deleteAllCourseDocumentSentenceRecords(courseId, documentId);
+        } else
+            throw new CourseDocumentNotFoundException(
+                    CourseDocumentConstants.courseDocumentNotFound(courseId, documentId));
+    }
 }
