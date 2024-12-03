@@ -71,6 +71,17 @@
 			<artifactId>pdfbox</artifactId>
 			<version>3.0.3</version>
 		 </dependency>
+		 <dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>4.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>4.5.0</version>
+			<classifier>models</classifier>
+		</dependency>
 	</dependencies>
 
 	<build>
