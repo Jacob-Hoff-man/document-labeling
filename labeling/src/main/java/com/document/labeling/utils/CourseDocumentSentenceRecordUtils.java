@@ -1,6 +1,6 @@
 package com.document.labeling.utils;
 
-import com.document.labeling.daos.CourseDocumentSentenceRecordPutRequest;
+import com.document.labeling.dtos.CourseDocumentSentenceRecordPutRequest;
 import com.document.labeling.models.CourseDocumentSentenceRecord;
 
 public class CourseDocumentSentenceRecordUtils {
@@ -9,7 +9,7 @@ public class CourseDocumentSentenceRecordUtils {
 
     public static CourseDocumentSentenceRecord getUpdatedCourseDocumentSentenceRecord(CourseDocumentSentenceRecord cdsr,
             CourseDocumentSentenceRecordPutRequest newCdsr) {
-        CourseDocumentSentenceRecord updatedCdsr = new CourseDocumentSentenceRecord(cdsr.getDocumentSentenceRecordId(),
+        CourseDocumentSentenceRecord updatedCdsr = new CourseDocumentSentenceRecord(cdsr.getId(),
                 cdsr.getWords(), cdsr.getLabels());
         if (newCdsr.getWords() != null)
             updatedCdsr.setWords(newCdsr.getWords());

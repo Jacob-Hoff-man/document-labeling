@@ -15,6 +15,6 @@ services:
       - 27017:27017
     container_name: db-mongo
     volumes:
-      - ./db_data/:/data/db
-      - ./db_scripts:/docker-entrypoint-initdb.d
+      - ./db/mongo/data/:/data/db
+      - ./db/mongo/scripts:/docker-entrypoint-initdb.d
 

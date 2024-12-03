@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import com.document.labeling.exceptions.CourseDocumentFileNotAcceptedException;
 import com.document.labeling.exceptions.CourseDocumentNotFoundException;
 import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotFoundException;
 import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotUpdatedException;
@@ -60,6 +61,13 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(CourseDocumentNotFoundException.class)
     public ErrorDetail handleCourseDocumentNotFoundException(CourseDocumentNotFoundException exception,
+            WebRequest request) {
+        return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
+    }
+
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ExceptionHandler(CourseDocumentFileNotAcceptedException.class)
+    public ErrorDetail handleCourseDocumentFileNotAcceptedException(CourseDocumentFileNotAcceptedException exception,
             WebRequest request) {
         return new ErrorDetail(new Date(), exception.getMessage(), request.getDescription(false));
     }

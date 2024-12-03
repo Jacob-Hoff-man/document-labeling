@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.document.labeling.constants.CourseDocumentSentenceRecordConstants;
 import com.document.labeling.constants.LabelConstants;
-import com.document.labeling.daos.CourseDocumentSentenceRecordListPostRequest;
-import com.document.labeling.daos.CourseDocumentSentenceRecordPutRequest;
+import com.document.labeling.dtos.CourseDocumentSentenceRecordListPostRequest;
+import com.document.labeling.dtos.CourseDocumentSentenceRecordPutRequest;
 import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotFoundException;
 import com.document.labeling.exceptions.CourseDocumentSentenceRecordNotUpdatedException;
 import com.document.labeling.exceptions.CourseDocumentSentenceRecordWordsAndLabelsLengthNotEqualException;

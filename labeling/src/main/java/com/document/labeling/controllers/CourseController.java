@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.document.labeling.daos.CoursePostRequest;
-import com.document.labeling.daos.CoursePutRequest;
+import com.document.labeling.dtos.CoursePostRequest;
+import com.document.labeling.dtos.CoursePutRequest;
 import com.document.labeling.models.Course;
 import com.document.labeling.services.CourseService;
 

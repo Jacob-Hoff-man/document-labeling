@@ -11,7 +11,7 @@ public abstract class Base {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    public Base() {
+    protected Base() {
         this.createdDate = LocalDateTime.now();
     }
 

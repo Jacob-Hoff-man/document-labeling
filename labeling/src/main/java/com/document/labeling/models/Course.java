@@ -12,7 +12,6 @@ public class Course extends Base {
     private String description;
 
     public Course(String id, String name, String description) {
-        super();
         this.id = id;
         this.name = name;
         this.description = description;

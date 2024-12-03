@@ -1,13 +1,13 @@
-package com.document.labeling.daos;
+package com.document.labeling.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class CoursePostRequest {
+public class CourseDocumentPostRequest {
     @NotBlank(message = "name field is required")
     private String name;
     private String description;
 
-    public CoursePostRequest(String name, String description) {
+    public CourseDocumentPostRequest(String name, String description) {
         this.name = name;
         this.description = description;
     }
