@@ -1,7 +1,10 @@
 package com.document.labeling.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import com.document.labeling.services.CourseDocumentService;
 
 import com.document.labeling.dtos.CourseDocumentPostRequest;
 import com.document.labeling.dtos.CourseDocumentPostResponse;
+import com.document.labeling.models.CourseDocument;
 
 @RestController
 @RequestMapping("/courses/{courseId}/documents")
@@ -32,6 +36,12 @@ public class CourseDocumentController {
             @Valid @NotNull @RequestPart("file") final MultipartFile pdfFile,
             final @RequestPart("metadata") @Valid CourseDocumentPostRequest request) {
         return courseDocumentService.postCourseDocumentAndCourseDocumentSentences(courseId, request, pdfFile);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<CourseDocument> getAllCourseDocuments(@PathVariable String courseId) {
+        return courseDocumentService.getAllCourseDocuments(courseId);
     }
 
 }
