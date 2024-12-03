@@ -5,6 +5,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -18,12 +19,12 @@ import com.document.labeling.dtos.CourseDocumentPostRequest;
 import com.document.labeling.dtos.CourseDocumentPostResponse;
 import com.document.labeling.dtos.CourseDocumentSentenceRecordListPostRequest;
 import com.document.labeling.exceptions.CourseDocumentFileNotAcceptedException;
+import com.document.labeling.exceptions.CourseDocumentNotFoundException;
 import com.document.labeling.models.CourseDocument;
 import com.document.labeling.models.CourseDocumentSentenceRecord;
 import com.document.labeling.models.id.CourseDocumentId;
 import com.document.labeling.pipelines.CourseDocumentPipeline;
 import com.document.labeling.repositories.CourseDocumentRepository;
-import com.document.labeling.repositories.CourseRepository;
 
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreSentence;
@@ -93,5 +94,16 @@ public class CourseDocumentService {
 
     public List<CourseDocument> getAllCourseDocuments(String courseId) {
         return courseDocumentRepository.findByCourseId(courseId);
+    }
+
+    public CourseDocument getCourseDocumentById(String courseId, String documentId) {
+        Optional<CourseDocument> cd = courseDocumentRepository
+                .findById(new CourseDocumentId(courseId, documentId));
+        if (cd.isPresent()) {
+            return cd.get();
+        } else {
+            throw new CourseDocumentNotFoundException(CourseDocumentConstants
+                    .courseDocumentNotFound(courseId, documentId));
+        }
     }
 }

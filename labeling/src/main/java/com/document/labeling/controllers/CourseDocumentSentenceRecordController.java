@@ -19,13 +19,13 @@ import com.document.labeling.services.CourseDocumentSentenceRecordService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/courses/{courseId}/documents/{documentId}")
+@RequestMapping("/courses/{courseId}/documents/{documentId}/sentences")
 public class CourseDocumentSentenceRecordController {
 
     @Autowired
     private CourseDocumentSentenceRecordService courseDocumentSentenceRecordService;
 
-    @GetMapping("/sentences/{sentenceId}")
+    @GetMapping("/{sentenceId}")
     @ResponseStatus(HttpStatus.OK)
     public CourseDocumentSentenceRecord getCourseDocumentSentenceRecordById(
             @PathVariable String courseId,
@@ -43,7 +43,7 @@ public class CourseDocumentSentenceRecordController {
         return courseDocumentSentenceRecordService.getAllCourseDocumentSentenceRecords(courseId, documentId);
     }
 
-    @PutMapping("/sentences/{sentenceId}")
+    @PutMapping("/{sentenceId}")
     @ResponseStatus(HttpStatus.OK)
     public CourseDocumentSentenceRecord putCourseDocumentSentenceRecordById(
             @PathVariable String courseId,
