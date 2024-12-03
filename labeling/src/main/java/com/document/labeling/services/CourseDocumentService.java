@@ -90,4 +90,8 @@ public class CourseDocumentService {
         return new CourseDocumentPostResponse(courseDocument,
                 courseDocumentSentenceRecords);
     }
+
+    public List<CourseDocument> getAllCourseDocuments(String courseId) {
+        return courseDocumentRepository.findByCourseId(courseId);
+    }
 }
