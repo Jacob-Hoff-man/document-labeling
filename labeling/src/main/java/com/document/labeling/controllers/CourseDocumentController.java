@@ -2,6 +2,7 @@ package com.document.labeling.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -13,7 +14,9 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 import com.document.labeling.services.CourseDocumentService;
+
 import com.document.labeling.dtos.CourseDocumentPostRequest;
+import com.document.labeling.dtos.CourseDocumentPostResponse;
 
 @RestController
 @RequestMapping("/courses/{courseId}/documents")
@@ -24,11 +27,11 @@ public class CourseDocumentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public String postCourseDocument(
+    public CourseDocumentPostResponse postCourseDocument(
+            @PathVariable String courseId,
             @Valid @NotNull @RequestPart("file") final MultipartFile pdfFile,
             final @RequestPart("metadata") @Valid CourseDocumentPostRequest request) {
-        System.out.println("@@ req" + request + " " + request.getName() + " " + request.getDescription());
-        return courseDocumentService.parsePdfFile(pdfFile);
+        return courseDocumentService.postCourseDocumentAndCourseDocumentSentences(courseId, request, pdfFile);
     }
 
 }
