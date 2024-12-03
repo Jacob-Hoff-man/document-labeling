@@ -27,15 +27,15 @@ public class CourseDocumentSentenceRecordService {
     @Autowired
     private CourseService courseService;
 
-    public CourseDocumentSentenceRecord getCourseDocumentSentenceRecordById(String courseId, String documentIt,
+    public CourseDocumentSentenceRecord getCourseDocumentSentenceRecordById(String courseId, String documentId,
             int sentenceId) {
         Optional<CourseDocumentSentenceRecord> cdsr = courseDocumentSentenceRecordRepository
-                .findById(new CourseDocumentSentenceRecordId(courseId, documentIt, sentenceId));
+                .findById(new CourseDocumentSentenceRecordId(courseId, documentId, sentenceId));
         if (cdsr.isPresent()) {
             return cdsr.get();
         } else {
             throw new CourseDocumentSentenceRecordNotFoundException(CourseDocumentSentenceRecordConstants
-                    .courseDocumentSentenceRecordNotFound(courseId, documentIt, sentenceId));
+                    .courseDocumentSentenceRecordNotFound(courseId, documentId, sentenceId));
         }
     }
 
