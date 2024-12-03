@@ -44,4 +44,9 @@ public class CourseDocumentController {
         return courseDocumentService.getAllCourseDocuments(courseId);
     }
 
+    @GetMapping("/{documentId}")
+    @ResponseStatus(HttpStatus.OK)
+    public CourseDocument getCourseDocumentById(@PathVariable String courseId, @PathVariable String documentId) {
+        return courseDocumentService.getCourseDocumentById(courseId, documentId);
+    }
 }
